@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import TodoNinja from 'Todo-Ninja';
+import TodoNinja1 from 'Todo-Ninja';
 
-const client = new TodoNinja({
+const client = new TodoNinja1({
   username: 'My Username',
   password: 'My Password',
   bearerToken: 'My Bearer Token',
