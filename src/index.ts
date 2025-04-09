@@ -1,12 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { TodoNinja1 as default } from './client';
+export { TodoNinja as default } from './client';
 
 export { type Uploadable, toFile } from './core/uploads';
 export { APIPromise } from './core/api-promise';
-export { TodoNinja1, type ClientOptions } from './client';
+export { TodoNinja, type ClientOptions } from './client';
 export {
-  TodoNinja1Error,
+  TodoNinjaError,
   APIError,
   APIConnectionError,
   APIConnectionTimeoutError,

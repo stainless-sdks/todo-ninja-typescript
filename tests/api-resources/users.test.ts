@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import TodoNinja1 from 'Todo-Ninja';
+import TodoNinja from 'Todo-Ninja';
 
-const client = new TodoNinja1({
+const client = new TodoNinja({
   username: 'My Username',
   password: 'My Password',
   bearerToken: 'My Bearer Token',
@@ -36,8 +36,8 @@ describe('resource users', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveMe', async () => {
-    const responsePromise = client.users.retrieveMe();
+  test.skip('me', async () => {
+    const responsePromise = client.users.me();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

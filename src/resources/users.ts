@@ -9,7 +9,7 @@ export class Users extends APIResource {
     return this._client.post('/v1/users', { body, ...options });
   }
 
-  retrieveMe(options?: RequestOptions): APIPromise<UserRetrieveMeResponse> {
+  me(options?: RequestOptions): APIPromise<UserMeResponse> {
     return this._client.get('/v1/users/me', options);
   }
 }
@@ -28,7 +28,7 @@ export interface UserCreateResponse {
   username: string;
 }
 
-export interface UserRetrieveMeResponse {
+export interface UserMeResponse {
   id: string;
 
   created_at: string;
@@ -51,7 +51,7 @@ export interface UserCreateParams {
 export declare namespace Users {
   export {
     type UserCreateResponse as UserCreateResponse,
-    type UserRetrieveMeResponse as UserRetrieveMeResponse,
+    type UserMeResponse as UserMeResponse,
     type UserCreateParams as UserCreateParams,
   };
 }

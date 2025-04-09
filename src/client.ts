@@ -28,7 +28,7 @@ import {
   TagListResponse,
   Tags,
 } from './resources/tags';
-import { UserCreateParams, UserCreateResponse, UserRetrieveMeResponse, Users } from './resources/users';
+import { UserCreateParams, UserCreateResponse, UserMeResponse, Users } from './resources/users';
 import { toBase64 } from './internal/utils/base64';
 import { readEnv } from './internal/utils/env';
 import { formatRequestDetails, loggerFor } from './internal/utils/log';
@@ -62,7 +62,7 @@ export interface ClientOptions {
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['TODO_NINJA1_BASE_URL'].
+   * Defaults to process.env['TODO_NINJA_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -114,7 +114,7 @@ export interface ClientOptions {
   /**
    * Set the log level.
    *
-   * Defaults to process.env['TODO_NINJA1_LOG'] or 'warn' if it isn't set.
+   * Defaults to process.env['TODO_NINJA_LOG'] or 'warn' if it isn't set.
    */
   logLevel?: LogLevel | undefined;
 
@@ -127,9 +127,9 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Todo Ninja1 API.
+ * API Client for interfacing with the Todo Ninja API.
  */
-export class TodoNinja1 {
+export class TodoNinja {
   username: string | null;
   password: string | null;
   bearerToken: string | null;
@@ -147,12 +147,12 @@ export class TodoNinja1 {
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Todo Ninja1 API.
+   * API Client for interfacing with the Todo Ninja API.
    *
    * @param {string | null | undefined} [opts.username=process.env['TODO_NINJA_USERNAME'] ?? null]
    * @param {string | null | undefined} [opts.password=process.env['TODO_NINJA_PASSWORD'] ?? null]
    * @param {string | null | undefined} [opts.bearerToken=process.env['TODO_NINJA_BEARER_TOKEN'] ?? null]
-   * @param {string} [opts.baseURL=process.env['TODO_NINJA1_BASE_URL'] ?? http://localhost:3010] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['TODO_NINJA_BASE_URL'] ?? http://localhost:3010] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -161,7 +161,7 @@ export class TodoNinja1 {
    * @param {Record<string, string | undefined>} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = readEnv('TODO_NINJA1_BASE_URL'),
+    baseURL = readEnv('TODO_NINJA_BASE_URL'),
     username = readEnv('TODO_NINJA_USERNAME') ?? null,
     password = readEnv('TODO_NINJA_PASSWORD') ?? null,
     bearerToken = readEnv('TODO_NINJA_BEARER_TOKEN') ?? null,
@@ -176,14 +176,14 @@ export class TodoNinja1 {
     };
 
     this.baseURL = options.baseURL!;
-    this.timeout = options.timeout ?? TodoNinja1.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? TodoNinja.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
     this.logLevel =
       parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('TODO_NINJA1_LOG'), "process.env['TODO_NINJA1_LOG']", this) ??
+      parseLogLevel(readEnv('TODO_NINJA_LOG'), "process.env['TODO_NINJA_LOG']", this) ??
       defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
@@ -259,7 +259,7 @@ export class TodoNinja1 {
         if (value === null) {
           return `${encodeURIComponent(key)}=`;
         }
-        throw new Errors.TodoNinja1Error(
+        throw new Errors.TodoNinjaError(
           `Cannot stringify type ${typeof value}; Expected string, number, boolean, or null. If you need to pass nested query parameters, you can manually encode them, e.g. { query: { 'foo[key1]': value1, 'foo[key2]': value2 } }, and please open a GitHub issue requesting better support for your use case.`,
         );
       })
@@ -724,10 +724,10 @@ export class TodoNinja1 {
     }
   }
 
-  static TodoNinja1 = this;
+  static TodoNinja = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static TodoNinja1Error = Errors.TodoNinja1Error;
+  static TodoNinjaError = Errors.TodoNinjaError;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -747,10 +747,10 @@ export class TodoNinja1 {
   users: API.Users = new API.Users(this);
   tags: API.Tags = new API.Tags(this);
 }
-TodoNinja1.Todos = Todos;
-TodoNinja1.Users = Users;
-TodoNinja1.Tags = Tags;
-export declare namespace TodoNinja1 {
+TodoNinja.Todos = Todos;
+TodoNinja.Users = Users;
+TodoNinja.Tags = Tags;
+export declare namespace TodoNinja {
   export type RequestOptions = Opts.RequestOptions;
 
   export {
@@ -766,7 +766,7 @@ export declare namespace TodoNinja1 {
   export {
     Users as Users,
     type UserCreateResponse as UserCreateResponse,
-    type UserRetrieveMeResponse as UserRetrieveMeResponse,
+    type UserMeResponse as UserMeResponse,
     type UserCreateParams as UserCreateParams,
   };
 

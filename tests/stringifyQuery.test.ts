@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { TodoNinja1 } from 'Todo-Ninja';
+import { TodoNinja } from 'Todo-Ninja';
 
-const { stringifyQuery } = TodoNinja1.prototype as any;
+const { stringifyQuery } = TodoNinja.prototype as any;
 
 describe(stringifyQuery, () => {
   for (const [input, expected] of [

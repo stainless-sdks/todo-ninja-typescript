@@ -27,12 +27,12 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/users.ts">UserCreateResponse</a></code>
-- <code><a href="./src/resources/users.ts">UserRetrieveMeResponse</a></code>
+- <code><a href="./src/resources/users.ts">UserMeResponse</a></code>
 
 Methods:
 
 - <code title="post /v1/users">client.users.<a href="./src/resources/users.ts">create</a>({ ...params }) -> UserCreateResponse</code>
-- <code title="get /v1/users/me">client.users.<a href="./src/resources/users.ts">retrieveMe</a>() -> UserRetrieveMeResponse</code>
+- <code title="get /v1/users/me">client.users.<a href="./src/resources/users.ts">me</a>() -> UserMeResponse</code>
 
 # Tags
 

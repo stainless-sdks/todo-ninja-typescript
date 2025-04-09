@@ -17,4 +17,4 @@ export {
   type TodoUpdateParams,
   type TodoListParams,
 } from './todos/todos';
-export { Users, type UserCreateResponse, type UserRetrieveMeResponse, type UserCreateParams } from './users';
+export { Users, type UserCreateResponse, type UserMeResponse, type UserCreateParams } from './users';

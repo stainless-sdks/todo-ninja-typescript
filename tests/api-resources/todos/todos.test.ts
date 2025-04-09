@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import TodoNinja1 from 'Todo-Ninja';
+import TodoNinja from 'Todo-Ninja';
 
-const client = new TodoNinja1({
+const client = new TodoNinja({
   username: 'My Username',
   password: 'My Password',
   bearerToken: 'My Bearer Token',
@@ -75,7 +75,7 @@ describe('resource todos', () => {
         },
         { path: '/_stainless_unknown_path' },
       ),
-    ).rejects.toThrow(TodoNinja1.NotFoundError);
+    ).rejects.toThrow(TodoNinja.NotFoundError);
   });
 
   // skipped: tests are disabled for the time being
@@ -95,7 +95,7 @@ describe('resource todos', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.todos.list({ cursor: 'cursor', limit: 100 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(TodoNinja1.NotFoundError);
+    ).rejects.toThrow(TodoNinja.NotFoundError);
   });
 
   // skipped: tests are disabled for the time being
