@@ -1,8 +1,8 @@
 {
   "name": "Todo-Ninja",
   "version": "0.0.1-alpha.0",
-  "description": "The official TypeScript library for the Todo Ninja1 API",
-  "author": "Todo Ninja1 <dev-feedback@Todo-Ninja.com>",
+  "description": "The official TypeScript library for the Todo Ninja API",
+  "author": "Todo Ninja <info@stainless.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",

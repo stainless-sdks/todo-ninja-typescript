@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { TodoNinja1Error } from '../../core/error';
+import { TodoNinjaError } from '../../core/error';
 
 export const toBase64 = (data: string | Uint8Array | null | undefined): string => {
   if (!data) return '';
@@ -17,7 +17,7 @@ export const toBase64 = (data: string | Uint8Array | null | undefined): string =
     return btoa(String.fromCharCode.apply(null, data as any));
   }
 
-  throw new TodoNinja1Error('Cannot generate base64 string; Expected `Buffer` or `btoa` to be defined');
+  throw new TodoNinjaError('Cannot generate base64 string; Expected `Buffer` or `btoa` to be defined');
 };
 
 export const fromBase64 = (str: string): Uint8Array => {
@@ -33,5 +33,5 @@ export const fromBase64 = (str: string): Uint8Array => {
     );
   }
 
-  throw new TodoNinja1Error('Cannot decode base64 string; Expected `Buffer` or `atob` to be defined');
+  throw new TodoNinjaError('Cannot decode base64 string; Expected `Buffer` or `atob` to be defined');
 };
