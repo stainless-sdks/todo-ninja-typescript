@@ -14,6 +14,8 @@ import * as Shims from './internal/shims';
 import * as Opts from './internal/request-options';
 import { VERSION } from './version';
 import * as Errors from './core/error';
+import * as CorePagination from './core/pagination';
+import { AbstractPage, type PaginationParams, PaginationResponse } from './core/pagination';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
@@ -25,8 +27,8 @@ import {
   TagCreateParams,
   TagDeleteResponse,
   TagListParams,
-  TagListResponse,
   Tags,
+  TagsPagination,
 } from './resources/tags';
 import { UserCreateParams, UserCreateResponse, UserMeResponse, Users } from './resources/users';
 import { toBase64 } from './internal/utils/base64';
@@ -38,9 +40,9 @@ import {
   TodoCreateParams,
   TodoDeleteResponse,
   TodoListParams,
-  TodoListResponse,
   TodoUpdateParams,
   Todos,
+  TodosPagination,
 } from './resources/todos/todos';
 
 export interface ClientOptions {
@@ -511,6 +513,25 @@ export class TodoNinja {
     return { response, options, controller, requestLogID, retryOfRequestLogID, startTime };
   }
 
+  getAPIList<Item, PageClass extends CorePagination.AbstractPage<Item> = CorePagination.AbstractPage<Item>>(
+    path: string,
+    Page: new (...args: any[]) => PageClass,
+    opts?: RequestOptions,
+  ): CorePagination.PagePromise<PageClass, Item> {
+    return this.requestAPIList(Page, { method: 'get', path, ...opts });
+  }
+
+  requestAPIList<
+    Item = unknown,
+    PageClass extends CorePagination.AbstractPage<Item> = CorePagination.AbstractPage<Item>,
+  >(
+    Page: new (...args: ConstructorParameters<typeof CorePagination.AbstractPage>) => PageClass,
+    options: FinalRequestOptions,
+  ): CorePagination.PagePromise<PageClass, Item> {
+    const request = this.makeRequest(options, null, undefined);
+    return new CorePagination.PagePromise<PageClass, Item>(this as any as TodoNinja, request, Page);
+  }
+
   async fetchWithTimeout(
     url: RequestInfo,
     init: RequestInit | undefined,
@@ -753,11 +774,14 @@ TodoNinja.Tags = Tags;
 export declare namespace TodoNinja {
   export type RequestOptions = Opts.RequestOptions;
 
+  export import Pagination = CorePagination.Pagination;
+  export { type PaginationParams as PaginationParams, type PaginationResponse as PaginationResponse };
+
   export {
     Todos as Todos,
     type Todo as Todo,
-    type TodoListResponse as TodoListResponse,
     type TodoDeleteResponse as TodoDeleteResponse,
+    type TodosPagination as TodosPagination,
     type TodoCreateParams as TodoCreateParams,
     type TodoUpdateParams as TodoUpdateParams,
     type TodoListParams as TodoListParams,
@@ -773,8 +797,8 @@ export declare namespace TodoNinja {
   export {
     Tags as Tags,
     type Tag as Tag,
-    type TagListResponse as TagListResponse,
     type TagDeleteResponse as TagDeleteResponse,
+    type TagsPagination as TagsPagination,
     type TagCreateParams as TagCreateParams,
     type TagListParams as TagListParams,
   };
