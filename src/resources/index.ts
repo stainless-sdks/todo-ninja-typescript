@@ -3,18 +3,18 @@
 export {
   Tags,
   type Tag,
-  type TagListResponse,
   type TagDeleteResponse,
   type TagCreateParams,
   type TagListParams,
+  type TagsPagination,
 } from './tags';
 export {
   Todos,
   type Todo,
-  type TodoListResponse,
   type TodoDeleteResponse,
   type TodoCreateParams,
   type TodoUpdateParams,
   type TodoListParams,
+  type TodosPagination,
 } from './todos/todos';
 export { Users, type UserCreateResponse, type UserMeResponse, type UserCreateParams } from './users';

@@ -32,9 +32,10 @@ const client = new TodoNinja({
 });
 
 async function main() {
-  const todos = await client.todos.list();
+  const page = await client.todos.list();
+  const todo = page.data[0];
 
-  console.log(todos.data);
+  console.log(todo.id);
 }
 
 main();
@@ -55,7 +56,7 @@ const client = new TodoNinja({
 });
 
 async function main() {
-  const todos: TodoNinja.TodoListResponse = await client.todos.list();
+  const [todo]: [TodoNinja.Todo] = await client.todos.list();
 }
 
 main();
@@ -72,7 +73,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const todos = await client.todos.list().catch(async (err) => {
+  const page = await client.todos.list().catch(async (err) => {
     if (err instanceof TodoNinja.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
@@ -159,9 +160,11 @@ const response = await client.todos.list().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: todos, response: raw } = await client.todos.list().withResponse();
+const { data: page, response: raw } = await client.todos.list().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(todos.data);
+for await (const todo of page) {
+  console.log(todo.id);
+}
 ```
 
 ### Logging

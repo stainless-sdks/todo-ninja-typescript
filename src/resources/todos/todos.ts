@@ -4,6 +4,7 @@ import { APIResource } from '../../core/resource';
 import * as TagsAPI from './tags';
 import { TagAddParams, TagRemoveParams, Tags } from './tags';
 import { APIPromise } from '../../core/api-promise';
+import { PagePromise, Pagination, type PaginationParams } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
@@ -29,8 +30,8 @@ export class Todos extends APIResource {
   list(
     query: TodoListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<TodoListResponse> {
-    return this._client.get('/v1/todos', { query, ...options });
+  ): PagePromise<TodosPagination, Todo> {
+    return this._client.getAPIList('/v1/todos', Pagination<Todo>, { query, ...options });
   }
 
   delete(id: string, options?: RequestOptions): APIPromise<TodoDeleteResponse> {
@@ -41,6 +42,8 @@ export class Todos extends APIResource {
     return this._client.post(path`/v1/todos/${id}/complete`, options);
   }
 }
+
+export type TodosPagination = Pagination<Todo>;
 
 export interface Todo {
   id: string;
@@ -72,14 +75,6 @@ export namespace Todo {
   }
 }
 
-export interface TodoListResponse {
-  data: Array<Todo>;
-
-  has_more: boolean;
-
-  next_cursor: string | null;
-}
-
 export interface TodoDeleteResponse {
   id: string;
 
@@ -106,19 +101,15 @@ export interface TodoUpdateParams {
   title?: string;
 }
 
-export interface TodoListParams {
-  cursor?: string;
-
-  limit?: number | null;
-}
+export interface TodoListParams extends PaginationParams {}
 
 Todos.Tags = Tags;
 
 export declare namespace Todos {
   export {
     type Todo as Todo,
-    type TodoListResponse as TodoListResponse,
     type TodoDeleteResponse as TodoDeleteResponse,
+    type TodosPagination as TodosPagination,
     type TodoCreateParams as TodoCreateParams,
     type TodoUpdateParams as TodoUpdateParams,
     type TodoListParams as TodoListParams,

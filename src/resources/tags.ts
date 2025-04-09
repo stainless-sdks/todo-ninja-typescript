@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
+import { PagePromise, Pagination, type PaginationParams } from '../core/pagination';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
@@ -14,14 +15,19 @@ export class Tags extends APIResource {
     return this._client.get(path`/v1/tags/${id}`, options);
   }
 
-  list(query: TagListParams | null | undefined = {}, options?: RequestOptions): APIPromise<TagListResponse> {
-    return this._client.get('/v1/tags', { query, ...options });
+  list(
+    query: TagListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<TagsPagination, Tag> {
+    return this._client.getAPIList('/v1/tags', Pagination<Tag>, { query, ...options });
   }
 
   delete(id: string, options?: RequestOptions): APIPromise<TagDeleteResponse> {
     return this._client.delete(path`/v1/tags/${id}`, options);
   }
 }
+
+export type TagsPagination = Pagination<Tag>;
 
 export interface Tag {
   id: string;
@@ -33,14 +39,6 @@ export interface Tag {
   owner_id: string;
 
   updated_at: string;
-}
-
-export interface TagListResponse {
-  data: Array<Tag>;
-
-  has_more: boolean;
-
-  next_cursor: string | null;
 }
 
 export interface TagDeleteResponse {
@@ -55,17 +53,13 @@ export interface TagCreateParams {
   owner_id: string;
 }
 
-export interface TagListParams {
-  cursor?: string;
-
-  limit?: number | null;
-}
+export interface TagListParams extends PaginationParams {}
 
 export declare namespace Tags {
   export {
     type Tag as Tag,
-    type TagListResponse as TagListResponse,
     type TagDeleteResponse as TagDeleteResponse,
+    type TagsPagination as TagsPagination,
     type TagCreateParams as TagCreateParams,
     type TagListParams as TagListParams,
   };
