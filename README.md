@@ -26,9 +26,7 @@ The full API of this library can be found in [api.md](api.md).
 import TodoNinja from 'Todo-Ninja';
 
 const client = new TodoNinja({
-  username: process.env['TODO_NINJA_USERNAME'], // This is the default and can be omitted
-  password: process.env['TODO_NINJA_PASSWORD'], // This is the default and can be omitted
-  bearerToken: process.env['TODO_NINJA_BEARER_TOKEN'], // This is the default and can be omitted
+  bearerToken: process.env['TODO_NINJA_API_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
@@ -50,9 +48,7 @@ This library includes TypeScript definitions for all request params and response
 import TodoNinja from 'Todo-Ninja';
 
 const client = new TodoNinja({
-  username: process.env['TODO_NINJA_USERNAME'], // This is the default and can be omitted
-  password: process.env['TODO_NINJA_PASSWORD'], // This is the default and can be omitted
-  bearerToken: process.env['TODO_NINJA_BEARER_TOKEN'], // This is the default and can be omitted
+  bearerToken: process.env['TODO_NINJA_API_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
