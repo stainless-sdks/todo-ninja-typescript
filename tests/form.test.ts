@@ -1,5 +1,5 @@
-import { multipartFormRequestOptions, createForm } from 'Todo-Ninja/internal/uploads';
-import { toFile } from 'Todo-Ninja/core/uploads';
+import { multipartFormRequestOptions, createForm } from 'Todo-Ninja1/internal/uploads';
+import { toFile } from 'Todo-Ninja1/core/uploads';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {
