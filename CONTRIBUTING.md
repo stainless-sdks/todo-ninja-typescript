@@ -55,12 +55,12 @@ $ cd todo-ninja-typescript
 # With yarn
 $ yarn link
 $ cd ../my-package
-$ yarn link Todo-Ninja
+$ yarn link Todo-Ninja1
 
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global Todo-Ninja
+$ pnpm link -—global Todo-Ninja1
 ```
 
 ## Running tests
