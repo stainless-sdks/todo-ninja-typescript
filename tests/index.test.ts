@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIPromise } from 'Todo-Ninja/core/api-promise';
+import { APIPromise } from 'Todo-Ninja1/core/api-promise';
 
 import util from 'node:util';
-import TodoNinja from 'Todo-Ninja';
-import { APIUserAbortError } from 'Todo-Ninja';
+import TodoNinja1 from 'Todo-Ninja1';
+import { APIUserAbortError } from 'Todo-Ninja1';
 const defaultFetch = fetch;
 
 describe('instantiate client', () => {
@@ -20,11 +20,9 @@ describe('instantiate client', () => {
   });
 
   describe('defaultHeaders', () => {
-    const client = new TodoNinja({
+    const client = new TodoNinja1({
       baseURL: 'http://localhost:5000/',
       defaultHeaders: { 'X-My-Default-Header': '2' },
-      username: 'My Username',
-      password: 'My Password',
       bearerToken: 'My Bearer Token',
     });
 
@@ -56,14 +54,14 @@ describe('instantiate client', () => {
 
     beforeEach(() => {
       process.env = { ...env };
-      process.env['TODO_NINJA_LOG'] = undefined;
+      process.env['TODO_NINJA1_LOG'] = undefined;
     });
 
     afterEach(() => {
       process.env = env;
     });
 
-    const forceAPIResponseForClient = async (client: TodoNinja) => {
+    const forceAPIResponseForClient = async (client: TodoNinja1) => {
       await new APIPromise(
         client,
         Promise.resolve({
@@ -89,24 +87,14 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      const client = new TodoNinja({
-        logger: logger,
-        logLevel: 'debug',
-        username: 'My Username',
-        password: 'My Password',
-        bearerToken: 'My Bearer Token',
-      });
+      const client = new TodoNinja1({ logger: logger, logLevel: 'debug', bearerToken: 'My Bearer Token' });
 
       await forceAPIResponseForClient(client);
       expect(debugMock).toHaveBeenCalled();
     });
 
     test('default logLevel is warn', async () => {
-      const client = new TodoNinja({
-        username: 'My Username',
-        password: 'My Password',
-        bearerToken: 'My Bearer Token',
-      });
+      const client = new TodoNinja1({ bearerToken: 'My Bearer Token' });
       expect(client.logLevel).toBe('warn');
     });
 
@@ -119,13 +107,7 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      const client = new TodoNinja({
-        logger: logger,
-        logLevel: 'info',
-        username: 'My Username',
-        password: 'My Password',
-        bearerToken: 'My Bearer Token',
-      });
+      const client = new TodoNinja1({ logger: logger, logLevel: 'info', bearerToken: 'My Bearer Token' });
 
       await forceAPIResponseForClient(client);
       expect(debugMock).not.toHaveBeenCalled();
@@ -140,13 +122,8 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      process.env['TODO_NINJA_LOG'] = 'debug';
-      const client = new TodoNinja({
-        logger: logger,
-        username: 'My Username',
-        password: 'My Password',
-        bearerToken: 'My Bearer Token',
-      });
+      process.env['TODO_NINJA1_LOG'] = 'debug';
+      const client = new TodoNinja1({ logger: logger, bearerToken: 'My Bearer Token' });
       expect(client.logLevel).toBe('debug');
 
       await forceAPIResponseForClient(client);
@@ -162,16 +139,11 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      process.env['TODO_NINJA_LOG'] = 'not a log level';
-      const client = new TodoNinja({
-        logger: logger,
-        username: 'My Username',
-        password: 'My Password',
-        bearerToken: 'My Bearer Token',
-      });
+      process.env['TODO_NINJA1_LOG'] = 'not a log level';
+      const client = new TodoNinja1({ logger: logger, bearerToken: 'My Bearer Token' });
       expect(client.logLevel).toBe('warn');
       expect(warnMock).toHaveBeenCalledWith(
-        'process.env[\'TODO_NINJA_LOG\'] was set to "not a log level", expected one of ["off","error","warn","info","debug"]',
+        'process.env[\'TODO_NINJA1_LOG\'] was set to "not a log level", expected one of ["off","error","warn","info","debug"]',
       );
     });
 
@@ -184,14 +156,8 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      process.env['TODO_NINJA_LOG'] = 'debug';
-      const client = new TodoNinja({
-        logger: logger,
-        logLevel: 'off',
-        username: 'My Username',
-        password: 'My Password',
-        bearerToken: 'My Bearer Token',
-      });
+      process.env['TODO_NINJA1_LOG'] = 'debug';
+      const client = new TodoNinja1({ logger: logger, logLevel: 'off', bearerToken: 'My Bearer Token' });
 
       await forceAPIResponseForClient(client);
       expect(debugMock).not.toHaveBeenCalled();
@@ -206,14 +172,8 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      process.env['TODO_NINJA_LOG'] = 'not a log level';
-      const client = new TodoNinja({
-        logger: logger,
-        logLevel: 'debug',
-        username: 'My Username',
-        password: 'My Password',
-        bearerToken: 'My Bearer Token',
-      });
+      process.env['TODO_NINJA1_LOG'] = 'not a log level';
+      const client = new TodoNinja1({ logger: logger, logLevel: 'debug', bearerToken: 'My Bearer Token' });
       expect(client.logLevel).toBe('debug');
       expect(warnMock).not.toHaveBeenCalled();
     });
@@ -221,33 +181,27 @@ describe('instantiate client', () => {
 
   describe('defaultQuery', () => {
     test('with null query params given', () => {
-      const client = new TodoNinja({
+      const client = new TodoNinja1({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo' },
-        username: 'My Username',
-        password: 'My Password',
         bearerToken: 'My Bearer Token',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo');
     });
 
     test('multiple default query params', () => {
-      const client = new TodoNinja({
+      const client = new TodoNinja1({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo', hello: 'world' },
-        username: 'My Username',
-        password: 'My Password',
         bearerToken: 'My Bearer Token',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo&hello=world');
     });
 
     test('overriding with `undefined`', () => {
-      const client = new TodoNinja({
+      const client = new TodoNinja1({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { hello: 'world' },
-        username: 'My Username',
-        password: 'My Password',
         bearerToken: 'My Bearer Token',
       });
       expect(client.buildURL('/foo', { hello: undefined })).toEqual('http://localhost:5000/foo');
@@ -255,10 +209,8 @@ describe('instantiate client', () => {
   });
 
   test('custom fetch', async () => {
-    const client = new TodoNinja({
+    const client = new TodoNinja1({
       baseURL: 'http://localhost:5000/',
-      username: 'My Username',
-      password: 'My Password',
       bearerToken: 'My Bearer Token',
       fetch: (url) => {
         return Promise.resolve(
@@ -275,20 +227,16 @@ describe('instantiate client', () => {
 
   test('explicit global fetch', async () => {
     // make sure the global fetch type is assignable to our Fetch type
-    const client = new TodoNinja({
+    const client = new TodoNinja1({
       baseURL: 'http://localhost:5000/',
-      username: 'My Username',
-      password: 'My Password',
       bearerToken: 'My Bearer Token',
       fetch: defaultFetch,
     });
   });
 
   test('custom signal', async () => {
-    const client = new TodoNinja({
+    const client = new TodoNinja1({
       baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-      username: 'My Username',
-      password: 'My Password',
       bearerToken: 'My Bearer Token',
       fetch: (...args) => {
         return new Promise((resolve, reject) =>
@@ -319,10 +267,8 @@ describe('instantiate client', () => {
       return new Response(JSON.stringify({}), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new TodoNinja({
+    const client = new TodoNinja1({
       baseURL: 'http://localhost:5000/',
-      username: 'My Username',
-      password: 'My Password',
       bearerToken: 'My Bearer Token',
       fetch: testFetch,
     });
@@ -333,121 +279,75 @@ describe('instantiate client', () => {
 
   describe('baseUrl', () => {
     test('trailing slash', () => {
-      const client = new TodoNinja({
+      const client = new TodoNinja1({
         baseURL: 'http://localhost:5000/custom/path/',
-        username: 'My Username',
-        password: 'My Password',
         bearerToken: 'My Bearer Token',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
 
     test('no trailing slash', () => {
-      const client = new TodoNinja({
+      const client = new TodoNinja1({
         baseURL: 'http://localhost:5000/custom/path',
-        username: 'My Username',
-        password: 'My Password',
         bearerToken: 'My Bearer Token',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
 
     afterEach(() => {
-      process.env['TODO_NINJA_BASE_URL'] = undefined;
+      process.env['TODO_NINJA1_BASE_URL'] = undefined;
     });
 
     test('explicit option', () => {
-      const client = new TodoNinja({
-        baseURL: 'https://example.com',
-        username: 'My Username',
-        password: 'My Password',
-        bearerToken: 'My Bearer Token',
-      });
+      const client = new TodoNinja1({ baseURL: 'https://example.com', bearerToken: 'My Bearer Token' });
       expect(client.baseURL).toEqual('https://example.com');
     });
 
     test('env variable', () => {
-      process.env['TODO_NINJA_BASE_URL'] = 'https://example.com/from_env';
-      const client = new TodoNinja({
-        username: 'My Username',
-        password: 'My Password',
-        bearerToken: 'My Bearer Token',
-      });
+      process.env['TODO_NINJA1_BASE_URL'] = 'https://example.com/from_env';
+      const client = new TodoNinja1({ bearerToken: 'My Bearer Token' });
       expect(client.baseURL).toEqual('https://example.com/from_env');
     });
 
     test('empty env variable', () => {
-      process.env['TODO_NINJA_BASE_URL'] = ''; // empty
-      const client = new TodoNinja({
-        username: 'My Username',
-        password: 'My Password',
-        bearerToken: 'My Bearer Token',
-      });
+      process.env['TODO_NINJA1_BASE_URL'] = ''; // empty
+      const client = new TodoNinja1({ bearerToken: 'My Bearer Token' });
       expect(client.baseURL).toEqual('http://localhost:3010');
     });
 
     test('blank env variable', () => {
-      process.env['TODO_NINJA_BASE_URL'] = '  '; // blank
-      const client = new TodoNinja({
-        username: 'My Username',
-        password: 'My Password',
-        bearerToken: 'My Bearer Token',
-      });
+      process.env['TODO_NINJA1_BASE_URL'] = '  '; // blank
+      const client = new TodoNinja1({ bearerToken: 'My Bearer Token' });
       expect(client.baseURL).toEqual('http://localhost:3010');
     });
   });
 
   test('maxRetries option is correctly set', () => {
-    const client = new TodoNinja({
-      maxRetries: 4,
-      username: 'My Username',
-      password: 'My Password',
-      bearerToken: 'My Bearer Token',
-    });
+    const client = new TodoNinja1({ maxRetries: 4, bearerToken: 'My Bearer Token' });
     expect(client.maxRetries).toEqual(4);
 
     // default
-    const client2 = new TodoNinja({
-      username: 'My Username',
-      password: 'My Password',
-      bearerToken: 'My Bearer Token',
-    });
+    const client2 = new TodoNinja1({ bearerToken: 'My Bearer Token' });
     expect(client2.maxRetries).toEqual(2);
   });
 
   test('with environment variable arguments', () => {
     // set options via env var
-    process.env['TODO_NINJA_USERNAME'] = 'My Username';
-    process.env['TODO_NINJA_PASSWORD'] = 'My Password';
-    process.env['TODO_NINJA_BEARER_TOKEN'] = 'My Bearer Token';
-    const client = new TodoNinja();
-    expect(client.username).toBe('My Username');
-    expect(client.password).toBe('My Password');
+    process.env['TODO_NINJA_API_KEY'] = 'My Bearer Token';
+    const client = new TodoNinja1();
     expect(client.bearerToken).toBe('My Bearer Token');
   });
 
   test('with overridden environment variable arguments', () => {
     // set options via env var
-    process.env['TODO_NINJA_USERNAME'] = 'another My Username';
-    process.env['TODO_NINJA_PASSWORD'] = 'another My Password';
-    process.env['TODO_NINJA_BEARER_TOKEN'] = 'another My Bearer Token';
-    const client = new TodoNinja({
-      username: 'My Username',
-      password: 'My Password',
-      bearerToken: 'My Bearer Token',
-    });
-    expect(client.username).toBe('My Username');
-    expect(client.password).toBe('My Password');
+    process.env['TODO_NINJA_API_KEY'] = 'another My Bearer Token';
+    const client = new TodoNinja1({ bearerToken: 'My Bearer Token' });
     expect(client.bearerToken).toBe('My Bearer Token');
   });
 });
 
 describe('request building', () => {
-  const client = new TodoNinja({
-    username: 'My Username',
-    password: 'My Password',
-    bearerToken: 'My Bearer Token',
-  });
+  const client = new TodoNinja1({ bearerToken: 'My Bearer Token' });
 
   describe('custom headers', () => {
     test('handles undefined', () => {
@@ -466,11 +366,7 @@ describe('request building', () => {
 });
 
 describe('default encoder', () => {
-  const client = new TodoNinja({
-    username: 'My Username',
-    password: 'My Password',
-    bearerToken: 'My Bearer Token',
-  });
+  const client = new TodoNinja1({ bearerToken: 'My Bearer Token' });
 
   class Serializable {
     toJSON() {
@@ -555,13 +451,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new TodoNinja({
-      username: 'My Username',
-      password: 'My Password',
-      bearerToken: 'My Bearer Token',
-      timeout: 10,
-      fetch: testFetch,
-    });
+    const client = new TodoNinja1({ bearerToken: 'My Bearer Token', timeout: 10, fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -591,13 +481,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new TodoNinja({
-      username: 'My Username',
-      password: 'My Password',
-      bearerToken: 'My Bearer Token',
-      fetch: testFetch,
-      maxRetries: 4,
-    });
+    const client = new TodoNinja1({ bearerToken: 'My Bearer Token', fetch: testFetch, maxRetries: 4 });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
 
@@ -621,13 +505,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new TodoNinja({
-      username: 'My Username',
-      password: 'My Password',
-      bearerToken: 'My Bearer Token',
-      fetch: testFetch,
-      maxRetries: 4,
-    });
+    const client = new TodoNinja1({ bearerToken: 'My Bearer Token', fetch: testFetch, maxRetries: 4 });
 
     expect(
       await client.request({
@@ -656,9 +534,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new TodoNinja({
-      username: 'My Username',
-      password: 'My Password',
+    const client = new TodoNinja1({
       bearerToken: 'My Bearer Token',
       fetch: testFetch,
       maxRetries: 4,
@@ -691,13 +567,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new TodoNinja({
-      username: 'My Username',
-      password: 'My Password',
-      bearerToken: 'My Bearer Token',
-      fetch: testFetch,
-      maxRetries: 4,
-    });
+    const client = new TodoNinja1({ bearerToken: 'My Bearer Token', fetch: testFetch, maxRetries: 4 });
 
     expect(
       await client.request({
@@ -727,12 +597,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new TodoNinja({
-      username: 'My Username',
-      password: 'My Password',
-      bearerToken: 'My Bearer Token',
-      fetch: testFetch,
-    });
+    const client = new TodoNinja1({ bearerToken: 'My Bearer Token', fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -762,12 +627,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new TodoNinja({
-      username: 'My Username',
-      password: 'My Password',
-      bearerToken: 'My Bearer Token',
-      fetch: testFetch,
-    });
+    const client = new TodoNinja1({ bearerToken: 'My Bearer Token', fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
