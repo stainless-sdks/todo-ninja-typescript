@@ -1,4 +1,4 @@
-import { TodoNinjaError } from '../../core/error';
+import { TodoNinja1Error } from '../../core/error';
 
 /**
  * Percent-encode everything that isn't safe to have in a path without encoding safe chars.
@@ -51,7 +51,7 @@ export const createPathTagFunction = (pathEncoder = encodeURIPath) =>
         return acc + spaces + arrows;
       }, '');
 
-      throw new TodoNinjaError(
+      throw new TodoNinja1Error(
         `Path parameters result in path with invalid segments:\n${path}\n${underline}`,
       );
     }
