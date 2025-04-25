@@ -7,8 +7,8 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^Todo-Ninja$': '<rootDir>/src/index.ts',
-    '^Todo-Ninja/(.*)$': '<rootDir>/src/$1',
+    '^Todo-Ninja1$': '<rootDir>/src/index.ts',
+    '^Todo-Ninja1/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',
