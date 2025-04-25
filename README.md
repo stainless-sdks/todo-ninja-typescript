@@ -1,8 +1,8 @@
-# Todo Ninja TypeScript API Library
+# Todo Ninja1 TypeScript API Library
 
-[![NPM version](https://img.shields.io/npm/v/Todo-Ninja.svg)](https://npmjs.org/package/Todo-Ninja) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/Todo-Ninja)
+[![NPM version](https://img.shields.io/npm/v/Todo-Ninja1.svg)](https://npmjs.org/package/Todo-Ninja1) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/Todo-Ninja1)
 
-This library provides convenient access to the Todo Ninja REST API from server-side TypeScript or JavaScript.
+This library provides convenient access to the Todo Ninja1 REST API from server-side TypeScript or JavaScript.
 
 The REST API documentation can be found on [docs.todoninja.app](https://docs.todoninja.app). The full API of this library can be found in [api.md](api.md).
 
@@ -15,7 +15,7 @@ npm install git+ssh://git@github.com:stainless-sdks/todo-ninja-typescript.git
 ```
 
 > [!NOTE]
-> Once this package is [published to npm](https://app.stainless.com/docs/guides/publish), this will become: `npm install Todo-Ninja`
+> Once this package is [published to npm](https://app.stainless.com/docs/guides/publish), this will become: `npm install Todo-Ninja1`
 
 ## Usage
 
@@ -23,12 +23,10 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import TodoNinja from 'Todo-Ninja';
+import TodoNinja1 from 'Todo-Ninja1';
 
-const client = new TodoNinja({
-  username: process.env['TODO_NINJA_USERNAME'], // This is the default and can be omitted
-  password: process.env['TODO_NINJA_PASSWORD'], // This is the default and can be omitted
-  bearerToken: process.env['TODO_NINJA_BEARER_TOKEN'], // This is the default and can be omitted
+const client = new TodoNinja1({
+  bearerToken: process.env['TODO_NINJA_API_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
@@ -47,16 +45,14 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import TodoNinja from 'Todo-Ninja';
+import TodoNinja1 from 'Todo-Ninja1';
 
-const client = new TodoNinja({
-  username: process.env['TODO_NINJA_USERNAME'], // This is the default and can be omitted
-  password: process.env['TODO_NINJA_PASSWORD'], // This is the default and can be omitted
-  bearerToken: process.env['TODO_NINJA_BEARER_TOKEN'], // This is the default and can be omitted
+const client = new TodoNinja1({
+  bearerToken: process.env['TODO_NINJA_API_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
-  const [todo]: [TodoNinja.Todo] = await client.todos.list();
+  const [todo]: [TodoNinja1.Todo] = await client.todos.list();
 }
 
 main();
@@ -74,7 +70,7 @@ a subclass of `APIError` will be thrown:
 ```ts
 async function main() {
   const page = await client.todos.list().catch(async (err) => {
-    if (err instanceof TodoNinja.APIError) {
+    if (err instanceof TodoNinja1.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
       console.log(err.headers); // {server: 'nginx', ...}
@@ -111,7 +107,7 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const client = new TodoNinja({
+const client = new TodoNinja1({
   maxRetries: 0, // default is 2
 });
 
@@ -128,7 +124,7 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const client = new TodoNinja({
+const client = new TodoNinja1({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
@@ -144,7 +140,7 @@ Note that requests which time out will be [retried twice by default](#retries).
 
 ## Auto-pagination
 
-List methods in the TodoNinja API are paginated.
+List methods in the TodoNinja1 API are paginated.
 You can use the `for await … of` syntax to iterate through items across all pages:
 
 ```ts
@@ -185,7 +181,7 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 
 <!-- prettier-ignore -->
 ```ts
-const client = new TodoNinja();
+const client = new TodoNinja1();
 
 const response = await client.todos.list().asResponse();
 console.log(response.headers.get('X-My-Header'));
@@ -208,13 +204,13 @@ for await (const todo of page) {
 
 The log level can be configured in two ways:
 
-1. Via the `TODO_NINJA_LOG` environment variable
+1. Via the `TODO_NINJA1_LOG` environment variable
 2. Using the `logLevel` client option (overrides the environment variable if set)
 
 ```ts
-import TodoNinja from 'Todo-Ninja';
+import TodoNinja1 from 'Todo-Ninja1';
 
-const client = new TodoNinja({
+const client = new TodoNinja1({
   logLevel: 'debug', // Show all log messages
 });
 ```
@@ -240,13 +236,13 @@ When providing a custom logger, the `logLevel` option still controls which messa
 below the configured level will not be sent to your logger.
 
 ```ts
-import TodoNinja from 'Todo-Ninja';
+import TodoNinja1 from 'Todo-Ninja1';
 import pino from 'pino';
 
 const logger = pino();
 
-const client = new TodoNinja({
-  logger: logger.child({ name: 'TodoNinja' }),
+const client = new TodoNinja1({
+  logger: logger.child({ name: 'TodoNinja1' }),
   logLevel: 'debug', // Send all messages to pino, allowing it to filter
 });
 ```
@@ -310,10 +306,10 @@ globalThis.fetch = fetch;
 Or pass it to the client:
 
 ```ts
-import TodoNinja from 'Todo-Ninja';
+import TodoNinja1 from 'Todo-Ninja1';
 import fetch from 'my-fetch';
 
-const client = new TodoNinja({ fetch });
+const client = new TodoNinja1({ fetch });
 ```
 
 ### Fetch options
@@ -321,9 +317,9 @@ const client = new TodoNinja({ fetch });
 If you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)
 
 ```ts
-import TodoNinja from 'Todo-Ninja';
+import TodoNinja1 from 'Todo-Ninja1';
 
-const client = new TodoNinja({
+const client = new TodoNinja1({
   fetchOptions: {
     // `RequestInit` options
   },
@@ -338,11 +334,11 @@ options to requests:
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg" align="top" width="18" height="21"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>
 
 ```ts
-import TodoNinja from 'Todo-Ninja';
+import TodoNinja1 from 'Todo-Ninja1';
 import * as undici from 'undici';
 
 const proxyAgent = new undici.ProxyAgent('http://localhost:8888');
-const client = new TodoNinja({
+const client = new TodoNinja1({
   fetchOptions: {
     dispatcher: proxyAgent,
   },
@@ -352,9 +348,9 @@ const client = new TodoNinja({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg" align="top" width="18" height="21"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>
 
 ```ts
-import TodoNinja from 'Todo-Ninja';
+import TodoNinja1 from 'Todo-Ninja1';
 
-const client = new TodoNinja({
+const client = new TodoNinja1({
   fetchOptions: {
     proxy: 'http://localhost:8888',
   },
@@ -364,10 +360,10 @@ const client = new TodoNinja({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg" align="top" width="18" height="21"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>
 
 ```ts
-import TodoNinja from 'npm:Todo-Ninja';
+import TodoNinja1 from 'npm:Todo-Ninja1';
 
 const httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });
-const client = new TodoNinja({
+const client = new TodoNinja1({
   fetchOptions: {
     client: httpClient,
   },
