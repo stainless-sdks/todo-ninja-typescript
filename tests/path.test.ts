@@ -1,4 +1,4 @@
-import { createPathTagFunction, encodeURIPath } from 'Todo-Ninja/internal/utils/path';
+import { createPathTagFunction, encodeURIPath } from 'Todo-Ninja1/internal/utils/path';
 import { inspect } from 'node:util';
 
 describe('path template tag function', () => {
