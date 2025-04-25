@@ -9,8 +9,8 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "Todo-Ninja/*": ["src/*"],
-      "Todo-Ninja": ["src/index.ts"]
+      "Todo-Ninja1/*": ["src/*"],
+      "Todo-Ninja1": ["src/index.ts"]
     },
     "noEmit": true,
 
