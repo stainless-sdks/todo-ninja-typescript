@@ -3,8 +3,6 @@
 import TodoNinja from 'Todo-Ninja';
 
 const client = new TodoNinja({
-  username: 'My Username',
-  password: 'My Password',
   bearerToken: 'My Bearer Token',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
