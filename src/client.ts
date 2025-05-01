@@ -31,7 +31,6 @@ import {
   TagsPagination,
 } from './resources/tags';
 import { UserCreateParams, UserCreateResponse, UserMeResponse, Users } from './resources/users';
-import { toBase64 } from './internal/utils/base64';
 import { readEnv } from './internal/utils/env';
 import { formatRequestDetails, loggerFor } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
@@ -47,19 +46,9 @@ import {
 
 export interface ClientOptions {
   /**
-   * Defaults to process.env['TODO_NINJA_USERNAME'].
+   * Defaults to process.env['TODO_NINJA_API_KEY'].
    */
-  username?: string | null | undefined;
-
-  /**
-   * Defaults to process.env['TODO_NINJA_PASSWORD'].
-   */
-  password?: string | null | undefined;
-
-  /**
-   * Defaults to process.env['TODO_NINJA_BEARER_TOKEN'].
-   */
-  bearerToken?: string | null | undefined;
+  bearerToken?: string | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -132,9 +121,7 @@ export interface ClientOptions {
  * API Client for interfacing with the Todo Ninja API.
  */
 export class TodoNinja {
-  username: string | null;
-  password: string | null;
-  bearerToken: string | null;
+  bearerToken: string;
 
   baseURL: string;
   maxRetries: number;
@@ -151,9 +138,7 @@ export class TodoNinja {
   /**
    * API Client for interfacing with the Todo Ninja API.
    *
-   * @param {string | null | undefined} [opts.username=process.env['TODO_NINJA_USERNAME'] ?? null]
-   * @param {string | null | undefined} [opts.password=process.env['TODO_NINJA_PASSWORD'] ?? null]
-   * @param {string | null | undefined} [opts.bearerToken=process.env['TODO_NINJA_BEARER_TOKEN'] ?? null]
+   * @param {string | undefined} [opts.bearerToken=process.env['TODO_NINJA_API_KEY'] ?? undefined]
    * @param {string} [opts.baseURL=process.env['TODO_NINJA_BASE_URL'] ?? http://localhost:3010] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -164,14 +149,16 @@ export class TodoNinja {
    */
   constructor({
     baseURL = readEnv('TODO_NINJA_BASE_URL'),
-    username = readEnv('TODO_NINJA_USERNAME') ?? null,
-    password = readEnv('TODO_NINJA_PASSWORD') ?? null,
-    bearerToken = readEnv('TODO_NINJA_BEARER_TOKEN') ?? null,
+    bearerToken = readEnv('TODO_NINJA_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
+    if (bearerToken === undefined) {
+      throw new Errors.TodoNinjaError(
+        "The TODO_NINJA_API_KEY environment variable is missing or empty; either provide it, or instantiate the TodoNinja client with an bearerToken option, like new TodoNinja({ bearerToken: 'My Bearer Token' }).",
+      );
+    }
+
     const options: ClientOptions = {
-      username,
-      password,
       bearerToken,
       ...opts,
       baseURL: baseURL || `http://localhost:3010`,
@@ -194,8 +181,6 @@ export class TodoNinja {
 
     this._options = options;
 
-    this.username = username;
-    this.password = password;
     this.bearerToken = bearerToken;
   }
 
@@ -204,47 +189,10 @@ export class TodoNinja {
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
-    if (this.username && this.password && values.get('authorization')) {
-      return;
-    }
-    if (nulls.has('authorization')) {
-      return;
-    }
-
-    if (this.bearerToken && values.get('authorization')) {
-      return;
-    }
-    if (nulls.has('authorization')) {
-      return;
-    }
-
-    throw new Error(
-      'Could not resolve authentication method. Expected either username, password or bearerToken to be set. Or for one of the "Authorization" or "Authorization" headers to be explicitly omitted',
-    );
+    return;
   }
 
   protected authHeaders(opts: FinalRequestOptions): NullableHeaders | undefined {
-    return buildHeaders([this.basicAuth(opts), this.bearerAuth(opts)]);
-  }
-
-  protected basicAuth(opts: FinalRequestOptions): NullableHeaders | undefined {
-    if (!this.username) {
-      return undefined;
-    }
-
-    if (!this.password) {
-      return undefined;
-    }
-
-    const credentials = `${this.username}:${this.password}`;
-    const Authorization = `Basic ${toBase64(credentials)}`;
-    return buildHeaders([{ Authorization }]);
-  }
-
-  protected bearerAuth(opts: FinalRequestOptions): NullableHeaders | undefined {
-    if (this.bearerToken == null) {
-      return undefined;
-    }
     return buildHeaders([{ Authorization: `Bearer ${this.bearerToken}` }]);
   }
 
