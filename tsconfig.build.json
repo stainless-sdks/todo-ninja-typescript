@@ -6,7 +6,7 @@
     "rootDir": "./dist/src",
     "paths": {
       "Todo-Ninja/*": ["dist/src/*"],
-      "Todo-Ninja": ["dist/src/index.ts"],
+      "Todo-Ninja": ["dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
