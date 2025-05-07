@@ -11,14 +11,41 @@ import { path } from '../../internal/utils/path';
 export class Todos extends APIResource {
   tags: TagsAPI.Tags = new TagsAPI.Tags(this._client);
 
+  /**
+   * @example
+   * ```ts
+   * const todo = await client.todos.create({
+   *   completed_at: '2021-01-01T00:00:00.000Z',
+   *   description: 'Get butter, milk, and bread',
+   *   tag_ids: ['string'],
+   *   title: 'Buy groceries',
+   * });
+   * ```
+   */
   create(body: TodoCreateParams, options?: RequestOptions): APIPromise<Todo> {
     return this._client.post('/v1/todos', { body, ...options });
   }
 
+  /**
+   * @example
+   * ```ts
+   * const todo = await client.todos.retrieve(
+   *   'todo_nc6bzmkmd014706rfda898to',
+   * );
+   * ```
+   */
   retrieve(id: string, options?: RequestOptions): APIPromise<Todo> {
     return this._client.get(path`/v1/todos/${id}`, options);
   }
 
+  /**
+   * @example
+   * ```ts
+   * const todo = await client.todos.update(
+   *   'todo_nc6bzmkmd014706rfda898to',
+   * );
+   * ```
+   */
   update(
     id: string,
     body: TodoUpdateParams | null | undefined = {},
@@ -27,6 +54,15 @@ export class Todos extends APIResource {
     return this._client.put(path`/v1/todos/${id}`, { body, ...options });
   }
 
+  /**
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const todo of client.todos.list()) {
+   *   // ...
+   * }
+   * ```
+   */
   list(
     query: TodoListParams | null | undefined = {},
     options?: RequestOptions,
@@ -34,10 +70,26 @@ export class Todos extends APIResource {
     return this._client.getAPIList('/v1/todos', Pagination<Todo>, { query, ...options });
   }
 
+  /**
+   * @example
+   * ```ts
+   * const todo = await client.todos.delete(
+   *   'todo_nc6bzmkmd014706rfda898to',
+   * );
+   * ```
+   */
   delete(id: string, options?: RequestOptions): APIPromise<TodoDeleteResponse> {
     return this._client.delete(path`/v1/todos/${id}`, options);
   }
 
+  /**
+   * @example
+   * ```ts
+   * const todo = await client.todos.complete(
+   *   'todo_nc6bzmkmd014706rfda898to',
+   * );
+   * ```
+   */
   complete(id: string, options?: RequestOptions): APIPromise<Todo> {
     return this._client.post(path`/v1/todos/${id}/complete`, options);
   }
