@@ -7,8 +7,8 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^Todo-Ninja-mcp$': '<rootDir>/src/index.ts',
-    '^Todo-Ninja-mcp/(.*)$': '<rootDir>/src/$1',
+    '^todo-ninja-mcp$': '<rootDir>/src/index.ts',
+    '^todo-ninja-mcp/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
   testPathIgnorePatterns: ['scripts'],

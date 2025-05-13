@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import TodoNinja from 'Todo-Ninja';
+import TodoNinja from 'todo-ninja';
 
 const client = new TodoNinja({
   bearerToken: 'My Bearer Token',

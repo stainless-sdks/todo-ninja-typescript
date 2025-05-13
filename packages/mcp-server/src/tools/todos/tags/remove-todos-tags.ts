@@ -2,7 +2,7 @@
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../../';
-import TodoNinja from 'Todo-Ninja';
+import TodoNinja from 'todo-ninja';
 
 export const metadata: Metadata = {
   resource: 'todos.tags',
