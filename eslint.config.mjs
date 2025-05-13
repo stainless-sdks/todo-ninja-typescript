@@ -25,7 +25,7 @@ export default tseslint.config(
         {
           patterns: [
             {
-              regex: '^Todo-Ninja(/.*)?',
+              regex: '^todo-ninja(/.*)?',
               message: 'Use a relative import, not a package import.',
             },
           ],

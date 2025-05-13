@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "Todo-Ninja/*": ["dist/src/*"],
-      "Todo-Ninja": ["dist/src/index.ts"]
+      "todo-ninja/*": ["dist/src/*"],
+      "todo-ninja": ["dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,

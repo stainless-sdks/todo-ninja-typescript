@@ -1,5 +1,5 @@
 {
-  "name": "Todo-Ninja",
+  "name": "todo-ninja",
   "version": "0.0.1-alpha.0",
   "description": "The official TypeScript library for the Todo Ninja API",
   "author": "Todo Ninja <info@stainless.com>",
@@ -50,8 +50,8 @@
     "synckit": "0.8.8"
   },
   "imports": {
-    "Todo-Ninja": ".",
-    "Todo-Ninja/*": "./src/*"
+    "todo-ninja": ".",
+    "todo-ninja/*": "./src/*"
   },
   "exports": {
     ".": {

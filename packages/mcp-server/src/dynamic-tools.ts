@@ -1,4 +1,4 @@
-import TodoNinja from 'Todo-Ninja';
+import TodoNinja from 'todo-ninja';
 import { Endpoint } from './tools';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import { z } from 'zod';

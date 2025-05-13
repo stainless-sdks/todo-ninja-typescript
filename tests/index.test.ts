@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIPromise } from 'Todo-Ninja/core/api-promise';
+import { APIPromise } from 'todo-ninja/core/api-promise';
 
 import util from 'node:util';
-import TodoNinja from 'Todo-Ninja';
-import { APIUserAbortError } from 'Todo-Ninja';
+import TodoNinja from 'todo-ninja';
+import { APIUserAbortError } from 'todo-ninja';
 const defaultFetch = fetch;
 
 describe('instantiate client', () => {
