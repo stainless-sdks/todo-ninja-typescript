@@ -312,13 +312,13 @@ describe('instantiate client', () => {
     test('empty env variable', () => {
       process.env['TODO_NINJA_BASE_URL'] = ''; // empty
       const client = new TodoNinja({ bearerToken: 'My Bearer Token' });
-      expect(client.baseURL).toEqual('http://localhost:3010');
+      expect(client.baseURL).toEqual('https://todo-ninja-ziix.onrender.com');
     });
 
     test('blank env variable', () => {
       process.env['TODO_NINJA_BASE_URL'] = '  '; // blank
       const client = new TodoNinja({ bearerToken: 'My Bearer Token' });
-      expect(client.baseURL).toEqual('http://localhost:3010');
+      expect(client.baseURL).toEqual('https://todo-ninja-ziix.onrender.com');
     });
   });
 
