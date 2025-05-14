@@ -139,7 +139,7 @@ export class TodoNinja {
    * API Client for interfacing with the Todo Ninja API.
    *
    * @param {string | undefined} [opts.bearerToken=process.env['TODO_NINJA_API_KEY'] ?? undefined]
-   * @param {string} [opts.baseURL=process.env['TODO_NINJA_BASE_URL'] ?? http://localhost:3010] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['TODO_NINJA_BASE_URL'] ?? https://todo-ninja-ziix.onrender.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -161,7 +161,7 @@ export class TodoNinja {
     const options: ClientOptions = {
       bearerToken,
       ...opts,
-      baseURL: baseURL || `http://localhost:3010`,
+      baseURL: baseURL || `https://todo-ninja-ziix.onrender.com`,
     };
 
     this.baseURL = options.baseURL!;
