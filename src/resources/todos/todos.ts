@@ -121,8 +121,6 @@ export namespace Todo {
 
     label: string;
 
-    owner_id: string;
-
     updated_at: string;
   }
 }
