@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   resource: 'todos',
   operation: 'write',
   tags: [],
+  httpMethod: 'put',
+  httpPath: '/v1/todos/{id}',
 };
 
 export const tool: Tool = {

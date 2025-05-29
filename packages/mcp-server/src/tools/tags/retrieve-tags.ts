@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   resource: 'tags',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/v1/tags/{id}',
 };
 
 export const tool: Tool = {
