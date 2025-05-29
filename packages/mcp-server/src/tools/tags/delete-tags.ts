@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   resource: 'tags',
   operation: 'write',
   tags: [],
+  httpMethod: 'delete',
+  httpPath: '/v1/tags/{id}',
 };
 
 export const tool: Tool = {
