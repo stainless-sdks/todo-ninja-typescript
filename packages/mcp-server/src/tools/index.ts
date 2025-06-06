@@ -1,7 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import TodoNinja from 'todo-ninja';
-import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import { Metadata, Endpoint, HandlerFunction } from './types';
+
+export { Metadata, Endpoint, HandlerFunction };
 
 import create_todos from './todos/create-todos';
 import retrieve_todos from './todos/retrieve-todos';
@@ -17,24 +18,6 @@ import create_tags from './tags/create-tags';
 import retrieve_tags from './tags/retrieve-tags';
 import list_tags from './tags/list-tags';
 import delete_tags from './tags/delete-tags';
-
-export type HandlerFunction = (client: TodoNinja, args: Record<string, unknown> | undefined) => Promise<any>;
-
-export type Metadata = {
-  resource: string;
-  operation: 'read' | 'write';
-  tags: string[];
-
-  httpMethod?: string;
-  httpPath?: string;
-  operationId?: string;
-};
-
-export type Endpoint = {
-  metadata: Metadata;
-  tool: Tool;
-  handler: HandlerFunction;
-};
 
 export const endpoints: Endpoint[] = [];
 
