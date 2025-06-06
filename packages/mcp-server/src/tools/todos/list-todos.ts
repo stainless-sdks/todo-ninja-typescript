@@ -1,5 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { asTextContentResult } from 'todo-ninja-mcp/tools/types';
+
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../';
 import TodoNinja from 'todo-ninja';
@@ -28,9 +30,9 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: TodoNinja, args: Record<string, unknown> | undefined) => {
+export const handler = async (client: TodoNinja, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return client.todos.list(body);
+  return asTextContentResult(await client.todos.list(body));
 };
 
 export default { metadata, tool, handler };
