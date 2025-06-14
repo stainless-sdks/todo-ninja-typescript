@@ -2,7 +2,7 @@
 
 import type { TodoNinja } from '../client';
 
-export class APIResource {
+export abstract class APIResource {
   protected _client: TodoNinja;
 
   constructor(client: TodoNinja) {
