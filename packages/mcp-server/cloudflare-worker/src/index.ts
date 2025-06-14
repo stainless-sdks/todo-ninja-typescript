@@ -13,6 +13,8 @@ type MCPProps = {
  */
 const serverConfig: ServerConfig = {
   orgName: 'TodoNinja',
+  instructionsUrl: undefined, // Set a url for where you show users how to get an API key
+  logoUrl: undefined, // Set a custom logo url to appear during the OAuth flow
   clientProperties: [
     {
       key: 'bearerToken',
@@ -79,7 +81,6 @@ export default new OAuthProvider({
     // @ts-expect-error
     '/mcp': MyMCP.serve('/mcp'), // Streaming HTTP
   },
-  // @ts-expect-error
   defaultHandler: makeOAuthConsent(serverConfig),
   authorizeEndpoint: '/authorize',
   tokenEndpoint: '/token',
