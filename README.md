@@ -1,6 +1,6 @@
 # todo-ninja-typescript
 
-[![NPM version](https://img.shields.io/npm/v/todo-ninja.svg)](https://npmjs.org/package/todo-ninja) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/todo-ninja)
+[![NPM version](<https://img.shields.io/npm/v/todo-ninja.svg?label=npm%20(stable)>)](https://npmjs.org/package/todo-ninja) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/todo-ninja)
 
 A library for interacting with Todo Ninja in TypeScript.
 
