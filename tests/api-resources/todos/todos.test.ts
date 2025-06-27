@@ -12,7 +12,7 @@ describe('resource todos', () => {
   test.skip('create: only required params', async () => {
     const responsePromise = client.todos.create({
       completed_at: '2021-01-01T00:00:00.000Z',
-      description: 'Get butter, milk, and bread',
+      description: 'Get butter, milk and bread',
       tag_ids: ['string'],
       title: 'Buy groceries',
     });
@@ -29,7 +29,7 @@ describe('resource todos', () => {
   test.skip('create: required and optional params', async () => {
     const response = await client.todos.create({
       completed_at: '2021-01-01T00:00:00.000Z',
-      description: 'Get butter, milk, and bread',
+      description: 'Get butter, milk and bread',
       tag_ids: ['string'],
       title: 'Buy groceries',
     });
@@ -67,7 +67,7 @@ describe('resource todos', () => {
         'todo_nc6bzmkmd014706rfda898to',
         {
           completed_at: '2021-01-01T00:00:00.000Z',
-          description: 'Get butter, milk, and bread',
+          description: 'Get butter, milk and bread',
           tag_ids: ['string'],
           title: 'Buy groceries',
         },
