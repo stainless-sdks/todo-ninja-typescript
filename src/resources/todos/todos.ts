@@ -16,7 +16,7 @@ export class Todos extends APIResource {
    * ```ts
    * const todo = await client.todos.create({
    *   completed_at: '2021-01-01T00:00:00.000Z',
-   *   description: 'Get butter, milk, and bread',
+   *   description: 'Get butter, milk and bread',
    *   tag_ids: ['string'],
    *   title: 'Buy groceries',
    * });
