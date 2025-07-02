@@ -1,8 +1,8 @@
-# Todo Ninja TypeScript API Library
+# todo-ninja-typescript
 
 [![NPM version](<https://img.shields.io/npm/v/todo-ninja.svg?label=npm%20(stable)>)](https://npmjs.org/package/todo-ninja) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/todo-ninja)
 
-This library provides convenient access to the Todo Ninja REST API from server-side TypeScript or JavaScript.
+A library for interacting with Todo Ninja in TypeScript.
 
 The REST API documentation can be found on [docs.todoninja.app](https://docs.todoninja.app). The full API of this library can be found in [api.md](api.md).
 
