@@ -55,6 +55,8 @@ export class Todos extends APIResource {
   }
 
   /**
+   * Get the todos
+   *
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
