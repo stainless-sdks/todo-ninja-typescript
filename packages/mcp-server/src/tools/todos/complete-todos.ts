@@ -4,7 +4,7 @@ import { asTextContentResult } from 'todo-ninja-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../';
-import TodoNinja from 'todo-ninja';
+import TodoNinja11112 from 'todo-ninja';
 
 export const metadata: Metadata = {
   resource: 'todos',
@@ -27,7 +27,7 @@ export const tool: Tool = {
   },
 };
 
-export const handler = async (client: TodoNinja, args: Record<string, unknown> | undefined) => {
+export const handler = async (client: TodoNinja11112, args: Record<string, unknown> | undefined) => {
   const { id, ...body } = args as any;
   return asTextContentResult(await client.todos.complete(id));
 };

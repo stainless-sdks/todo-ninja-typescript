@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { TodoNinjaError } from './error';
+import { TodoNinja11112Error } from './error';
 import { FinalRequestOptions } from '../internal/request-options';
 import { defaultParseResponse } from '../internal/parse';
-import { type TodoNinja } from '../client';
+import { type TodoNinja11112 } from '../client';
 import { APIPromise } from './api-promise';
 import { type APIResponseProps } from '../internal/parse';
 import { maybeObj } from '../internal/utils/values';
@@ -11,13 +11,13 @@ import { maybeObj } from '../internal/utils/values';
 export type PageRequestOptions = Pick<FinalRequestOptions, 'query' | 'headers' | 'body' | 'path' | 'method'>;
 
 export abstract class AbstractPage<Item> implements AsyncIterable<Item> {
-  #client: TodoNinja;
+  #client: TodoNinja11112;
   protected options: FinalRequestOptions;
 
   protected response: Response;
   protected body: unknown;
 
-  constructor(client: TodoNinja, response: Response, body: unknown, options: FinalRequestOptions) {
+  constructor(client: TodoNinja11112, response: Response, body: unknown, options: FinalRequestOptions) {
     this.#client = client;
     this.options = options;
     this.response = response;
@@ -37,7 +37,7 @@ export abstract class AbstractPage<Item> implements AsyncIterable<Item> {
   async getNextPage(): Promise<this> {
     const nextOptions = this.nextPageRequestOptions();
     if (!nextOptions) {
-      throw new TodoNinjaError(
+      throw new TodoNinja11112Error(
         'No next page expected; please check `.hasNextPage()` before calling `.getNextPage()`.',
       );
     }
@@ -80,7 +80,7 @@ export class PagePromise<
   implements AsyncIterable<Item>
 {
   constructor(
-    client: TodoNinja,
+    client: TodoNinja11112,
     request: Promise<APIResponseProps>,
     Page: new (...args: ConstructorParameters<typeof AbstractPage>) => PageClass,
   ) {
@@ -125,7 +125,7 @@ export class Pagination<Item> extends AbstractPage<Item> implements PaginationRe
   next_cursor: string;
 
   constructor(
-    client: TodoNinja,
+    client: TodoNinja11112,
     response: Response,
     body: PaginationResponse<Item>,
     options: FinalRequestOptions,

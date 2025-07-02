@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import TodoNinja from 'todo-ninja';
+import TodoNinja11112 from 'todo-ninja';
 
-const client = new TodoNinja({
+const client = new TodoNinja11112({
   bearerToken: 'My Bearer Token',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
@@ -73,7 +73,7 @@ describe('resource todos', () => {
         },
         { path: '/_stainless_unknown_path' },
       ),
-    ).rejects.toThrow(TodoNinja.NotFoundError);
+    ).rejects.toThrow(TodoNinja11112.NotFoundError);
   });
 
   // skipped: tests are disabled for the time being
@@ -93,7 +93,7 @@ describe('resource todos', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.todos.list({ cursor: 'cursor', limit: 100 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(TodoNinja.NotFoundError);
+    ).rejects.toThrow(TodoNinja11112.NotFoundError);
   });
 
   // skipped: tests are disabled for the time being
