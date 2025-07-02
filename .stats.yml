@@ -1,4 +1,4 @@
 configured_endpoints: 14
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/interval%2Ftodo-ninja-e9a86dc1bc91693527b39e3540105c9a3a47ade6bed61d5d0cdc70a0869313f3.yml
-openapi_spec_hash: 1aaea7f07cba02ebc66b19e828754c3c
-config_hash: 8ca2d843182dd9a8383582f32b1ac968
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/interval%2Ftodo-ninja-a68239427d97ba907863e91b36d445e176d20cfc0ff5ccd1ce845bdfed0cdf2b.yml
+openapi_spec_hash: b19c1f879a4a220042090959253c0bc1
+config_hash: 9c427e9794526907d0a9df5b8b084dad

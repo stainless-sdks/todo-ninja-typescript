@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import TodoNinja from 'todo-ninja';
+import TodoNinja11112 from 'todo-ninja';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 
 type TextContentBlock = {
@@ -43,7 +43,7 @@ export type ToolCallResult = {
 };
 
 export type HandlerFunction = (
-  client: TodoNinja,
+  client: TodoNinja11112,
   args: Record<string, unknown> | undefined,
 ) => Promise<ToolCallResult>;
 
