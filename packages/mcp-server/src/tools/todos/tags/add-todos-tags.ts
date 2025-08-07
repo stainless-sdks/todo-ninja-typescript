@@ -40,8 +40,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: TodoNinja, args: Record<string, unknown> | undefined) => {
-  const { tagId, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(args, await client.todos.tags.add(tagId, body)));
+  const { tagId, jq_filter, ...body } = args as any;
+  return asTextContentResult(await maybeFilter(jq_filter, await client.todos.tags.add(tagId, body)));
 };
 
 export default { metadata, tool, handler };

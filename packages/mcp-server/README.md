@@ -172,7 +172,7 @@ The following tools are available in this MCP server.
 - `update_todos` (`write`):
 - `list_todos` (`read`):
 - `delete_todos` (`write`):
-- `complete_todos` (`write`):
+- `complete_todo_todos` (`write`):
 
 ### Resource `todos.tags`:
 

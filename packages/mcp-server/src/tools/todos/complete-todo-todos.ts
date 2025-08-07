@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export const tool: Tool = {
-  name: 'complete_todos',
+  name: 'complete_todo_todos',
   description:
     "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\n\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/todo',\n  $defs: {\n    todo: {\n      type: 'object',\n      properties: {\n        id: {\n          type: 'string'\n        },\n        completed_at: {\n          type: 'string'\n        },\n        created_at: {\n          type: 'string'\n        },\n        description: {\n          type: 'string'\n        },\n        tags: {\n          type: 'array',\n          items: {\n            type: 'object',\n            properties: {\n              id: {\n                type: 'string'\n              },\n              created_at: {\n                type: 'string'\n              },\n              label: {\n                type: 'string'\n              },\n              updated_at: {\n                type: 'string'\n              }\n            },\n            required: [              'id',\n              'created_at',\n              'label',\n              'updated_at'\n            ]\n          }\n        },\n        title: {\n          type: 'string'\n        },\n        updated_at: {\n          type: 'string'\n        }\n      },\n      required: [        'id',\n        'completed_at',\n        'created_at',\n        'description',\n        'tags',\n        'title',\n        'updated_at'\n      ]\n    }\n  }\n}\n```",
   inputSchema: {
@@ -37,8 +37,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: TodoNinja, args: Record<string, unknown> | undefined) => {
-  const { id, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(args, await client.todos.complete(id)));
+  const { id, jq_filter, ...body } = args as any;
+  return asTextContentResult(await maybeFilter(jq_filter, await client.todos.completeTodo(id)));
 };
 
 export default { metadata, tool, handler };

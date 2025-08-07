@@ -109,8 +109,8 @@ describe('resource todos', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('complete', async () => {
-    const responsePromise = client.todos.complete('todo_nc6bzmkmd014706rfda898to');
+  test.skip('completeTodo', async () => {
+    const responsePromise = client.todos.completeTodo('todo_nc6bzmkmd014706rfda898to');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
