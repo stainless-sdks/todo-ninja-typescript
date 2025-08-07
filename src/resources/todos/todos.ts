@@ -85,12 +85,12 @@ export class Todos extends APIResource {
   /**
    * @example
    * ```ts
-   * const todo = await client.todos.complete(
+   * const todo = await client.todos.completeTodo(
    *   'todo_nc6bzmkmd014706rfda898to',
    * );
    * ```
    */
-  complete(id: string, options?: RequestOptions): APIPromise<Todo> {
+  completeTodo(id: string, options?: RequestOptions): APIPromise<Todo> {
     return this._client.post(path`/v1/todos/${id}/complete`, options);
   }
 }
