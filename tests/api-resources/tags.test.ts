@@ -8,7 +8,7 @@ const client = new TodoNinja({
 });
 
 describe('resource tags', () => {
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.tags.create({ label: 'Work', owner_id: 'owner_id' });
     const rawResponse = await responsePromise.asResponse();
@@ -20,12 +20,12 @@ describe('resource tags', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.tags.create({ label: 'Work', owner_id: 'owner_id' });
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.tags.retrieve('tag_tz4a98xxat96iws9zmbrgj3a');
     const rawResponse = await responsePromise.asResponse();
@@ -37,7 +37,7 @@ describe('resource tags', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.tags.list();
     const rawResponse = await responsePromise.asResponse();
@@ -49,7 +49,7 @@ describe('resource tags', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -57,7 +57,7 @@ describe('resource tags', () => {
     ).rejects.toThrow(TodoNinja.NotFoundError);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.tags.delete('tag_tz4a98xxat96iws9zmbrgj3a');
     const rawResponse = await responsePromise.asResponse();

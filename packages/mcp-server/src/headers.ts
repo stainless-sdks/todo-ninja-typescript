@@ -1,8 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { type ClientOptions } from 'todo-ninja/client';
-
 import { IncomingMessage } from 'node:http';
+import { ClientOptions } from 'todo-ninja';
 
 export const parseAuthHeaders = (req: IncomingMessage): Partial<ClientOptions> => {
   if (req.headers.authorization) {
@@ -17,7 +16,7 @@ export const parseAuthHeaders = (req: IncomingMessage): Partial<ClientOptions> =
   }
 
   const bearerToken =
-    req.headers['x-todo-ninja-api-key'] instanceof Array ?
+    Array.isArray(req.headers['x-todo-ninja-api-key']) ?
       req.headers['x-todo-ninja-api-key'][0]
     : req.headers['x-todo-ninja-api-key'];
   return { bearerToken };
