@@ -8,7 +8,7 @@ const client = new TodoNinja({
 });
 
 describe('resource tags', () => {
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('add: only required params', async () => {
     const responsePromise = client.todos.tags.add('tag_tz4a98xxat96iws9zmbrgj3a', {
       todoId: 'todo_nc6bzmkmd014706rfda898to',
@@ -22,14 +22,14 @@ describe('resource tags', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('add: required and optional params', async () => {
     const response = await client.todos.tags.add('tag_tz4a98xxat96iws9zmbrgj3a', {
       todoId: 'todo_nc6bzmkmd014706rfda898to',
     });
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('remove: only required params', async () => {
     const responsePromise = client.todos.tags.remove('tag_tz4a98xxat96iws9zmbrgj3a', {
       todoId: 'todo_nc6bzmkmd014706rfda898to',
@@ -43,7 +43,7 @@ describe('resource tags', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('remove: required and optional params', async () => {
     const response = await client.todos.tags.remove('tag_tz4a98xxat96iws9zmbrgj3a', {
       todoId: 'todo_nc6bzmkmd014706rfda898to',

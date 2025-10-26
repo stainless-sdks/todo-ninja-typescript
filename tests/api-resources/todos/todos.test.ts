@@ -8,7 +8,7 @@ const client = new TodoNinja({
 });
 
 describe('resource todos', () => {
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.todos.create({
       completed_at: '2021-01-01T00:00:00.000Z',
@@ -25,7 +25,7 @@ describe('resource todos', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.todos.create({
       completed_at: '2021-01-01T00:00:00.000Z',
@@ -35,7 +35,7 @@ describe('resource todos', () => {
     });
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.todos.retrieve('todo_nc6bzmkmd014706rfda898to');
     const rawResponse = await responsePromise.asResponse();
@@ -47,7 +47,7 @@ describe('resource todos', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('update', async () => {
     const responsePromise = client.todos.update('todo_nc6bzmkmd014706rfda898to');
     const rawResponse = await responsePromise.asResponse();
@@ -59,7 +59,7 @@ describe('resource todos', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('update: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -76,7 +76,7 @@ describe('resource todos', () => {
     ).rejects.toThrow(TodoNinja.NotFoundError);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.todos.list();
     const rawResponse = await responsePromise.asResponse();
@@ -88,7 +88,7 @@ describe('resource todos', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -96,7 +96,7 @@ describe('resource todos', () => {
     ).rejects.toThrow(TodoNinja.NotFoundError);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.todos.delete('todo_nc6bzmkmd014706rfda898to');
     const rawResponse = await responsePromise.asResponse();
@@ -108,7 +108,7 @@ describe('resource todos', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('completeTodo', async () => {
     const responsePromise = client.todos.completeTodo('todo_nc6bzmkmd014706rfda898to');
     const rawResponse = await responsePromise.asResponse();
